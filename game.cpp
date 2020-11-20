@@ -1,8 +1,6 @@
 #include<iostream>
 #include<bits/stdc++.h>
 
-#include <ctime>
-#include <cstdlib>
 
 #define MAXVAL 2048
 #define SIZE 4
