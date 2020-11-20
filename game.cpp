@@ -268,15 +268,6 @@ bool similaritycheck(int temp2[SIZE][SIZE]){
 	return false;
 }
 
-
-void storeundoboard(){
-	for(int i=0; i<SIZE;i++){
-		for(int j=0;j<SIZE;j++){
-			undoboard[i][j]=board[i][j];
-		}
-	}
-}
-
 void storecopyboard(int x[SIZE][SIZE], int y[SIZE][SIZE]){
 	for(int i=0; i<SIZE;i++){
 		for(int j=0;j<SIZE;j++){
@@ -328,7 +319,7 @@ int main(){
 	reset();
 	elementchecker();
 	insrandom();
-	storeundoboard();	
+	storecopyboard(undoboard,board);
 	while(true){
 		printUI();
 		char command;
@@ -344,7 +335,7 @@ int main(){
 			reset();
 			elementchecker();
 			insrandom();
-			storeundoboard();
+			storecopyboard(undoboard,board);
 		}
 		else if(command=='u'){
 			undomove();
@@ -355,9 +346,26 @@ int main(){
 		}	
 		else if(command=='w' || command=='s' || command=='a' || command=='d'){
 			storecopyboard(temp2,board);
-			storeundoboard();			
-			move(command,board);
+			storecopyboard(undoboard,board);			
 
+			switch(command){
+				case 'w':{
+					storecopyboard(board,futurearray[2]);
+					break;
+				}
+				case 'a':{
+					storecopyboard(board,futurearray[1]);
+					break;
+				}
+				case 's':{
+					storecopyboard(board,futurearray[3]);
+					break;
+				}
+				case 'd':{
+					storecopyboard(board,futurearray[0]);
+					break;
+				}
+			}
 			if(similaritycheck(temp2)){
 
 				elementchecker();
