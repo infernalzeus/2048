@@ -304,7 +304,7 @@ bool gameover(){
 bool maxelementchecker(int board[SIZE][SIZE]){
 	for(int i=0; i<SIZE; i++){
 		for(int j=0; j<SIZE; j++){
-			if(board[i][j]==2048){
+			if(board[i][j]==MAXVAL){
 				return true;
 			}
 		}
